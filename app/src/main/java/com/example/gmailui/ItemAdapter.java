@@ -3,29 +3,19 @@ package com.example.gmailui;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.Checkable;
 import android.widget.TextView;
-
-import androidx.annotation.ColorRes;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
-import androidx.core.content.ContextCompat;
-import androidx.core.graphics.drawable.DrawableCompat;
 
 import java.util.List;
 
 public class ItemAdapter extends BaseAdapter {
     Context context;
     List<ItemModel> items;
-    private Object ViewHolder;
 
     public ItemAdapter(Context context, List<ItemModel> items) {
         this.context = context;
@@ -66,12 +56,8 @@ public class ItemAdapter extends BaseAdapter {
         else viewHolder = (ViewHolder) view.getTag();
 
         ItemModel item = items.get(i);
-//        viewHolder.sender.getBackground().setColorFilter(Integer.parseInt(item.getMyHexColor().replaceFirst("#", ""), 16),PorterDuff.Mode.SRC_ATOP);
-//        Log.v("COLOR",item.getMyHexColor());
-//        viewHolder.sender.setBackground(getTintedDrawable(context,R.drawable.oval,Integer.parseInt(item.getMyHexColor().replaceFirst("#", ""), 16) ));
-//        viewHolder.sender.getBackground().setTint(Color.parseColor(item.getMyHexColor()));
-//        setTextViewDrawableColor(viewHolder.sender,Color.parseColor(item.getMyHexColor()));
-//        viewHolder.sender.setBackgroundColor(Color.parseColor(item.getMyHexColor()));
+
+        viewHolder.sender.getBackground().setColorFilter(Color.parseColor(item.getMyHexColor()),PorterDuff.Mode.SRC_ATOP);
         viewHolder.name.setText(item.getName());
         viewHolder.sender.setText(String.valueOf(item.getName().charAt(0)));
         viewHolder.title.setText(item.getTitle());
@@ -98,13 +84,6 @@ public class ItemAdapter extends BaseAdapter {
         TextView content;
         TextView time;
         CheckBox favorite;
-    }
-    private Drawable getTintedDrawable(@NonNull final Context context,
-                                             @DrawableRes int drawableRes, @ColorRes int colorRes) {
-        Drawable d = ContextCompat.getDrawable(context, drawableRes);
-        d = DrawableCompat.wrap(d);
-        DrawableCompat.setTint(d.mutate(), ContextCompat.getColor(context, colorRes));
-        return d;
     }
 
 }
