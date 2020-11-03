@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/sender"
+        android:layout_width="86dp"
+        android:layout_height="86dp"
+        android:background="@drawable/oval"
+        android:backgroundTint="@color/purple_200"
+        android:gravity="center"
+        android:text="S"
+        android:textSize="60dp" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="174dp"
+        android:layout_height="38dp"
+        android:layout_toEndOf="@+id/sender"
+        android:layout_toRightOf="@+id/sender"
+        android:text="kkkkkkkkkkk"
+        android:textColor="@color/black"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="0dp"
+        android:textSize="28dp" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="245dp"
+        android:layout_height="24dp"
+        android:layout_below="@+id/name"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/sender"
+        android:layout_toRightOf="@+id/sender"
+        android:text="aaaaaaaaaaaaaa"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="245dp"
+        android:layout_height="24dp"
+        android:layout_below="@+id/title"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/sender"
+        android:layout_toRightOf="@+id/sender"
+        android:text="aaaaaaaaaaaaaa"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/name"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="8dp"
+        android:text="12:37PM"
+        android:textSize="18dp" />
+
+    <CheckBox
+        android:id="@+id/favorite"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_alignBottom="@id/content"
+        android:layout_alignParentRight="true"
+        android:button="@drawable/ic_baseline_star_outline_24"
+        android:gravity="center" />
+
+
+</RelativeLayout>
