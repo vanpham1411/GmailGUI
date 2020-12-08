@@ -9,17 +9,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ItemAdapter extends BaseAdapter {
+public class ItemAdapter extends BaseAdapter implements Filterable {
     Context context;
     List<ItemModel> items;
-
+    List<ItemModel> listfull;
+    private SearchFilter searchFilter;
     public ItemAdapter(Context context, List<ItemModel> items) {
         this.context = context;
         this.items = items;
+        listfull = new ArrayList<>(items);
     }
 
     @Override
@@ -76,10 +81,49 @@ public class ItemAdapter extends BaseAdapter {
 
     }
 
+    @Override
+    public Filter getFilter() {
+        if(searchFilter==null) {
+            searchFilter=new SearchFilter();
+        }
+        return searchFilter;
+    }
+    private class SearchFilter extends Filter{
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults result = new FilterResults();
+            //listfull
+            if(constraint == null || constraint.length() == 0){
+                result.values = listfull;
+                result.values = listfull.size();
+            }else {
+                ArrayList<ItemModel> filterlist = new ArrayList<>();
+                for(ItemModel j: listfull ){
+                    if(j.getTitle().toLowerCase().contains(constraint) ||j.getName().contains(constraint)){
+                        filterlist.add(j);
+                    }
+                }
+                result.values = filterlist;
+                result.count = filterlist.size();
+            }
+            return result;
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            if(results.count == 0) {
+                notifyDataSetChanged();
+            }else {
+                items = (ArrayList<ItemModel>) results.values;
+                notifyDataSetChanged();
+            }
+        }
+    }
+
     private class ViewHolder {
         Drawable oval;
         TextView sender;
-         TextView name;
+        TextView name;
         TextView title;
         TextView content;
         TextView time;
