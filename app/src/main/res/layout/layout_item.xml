@@ -69,7 +69,8 @@
         android:layout_alignBottom="@id/content"
         android:layout_alignParentRight="true"
         android:button="@drawable/ic_baseline_star_outline_24"
-        android:gravity="center" />
+        android:gravity="center"
+        android:focusable="false"/>
 
 
 </RelativeLayout>

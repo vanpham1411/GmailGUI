@@ -7,7 +7,7 @@
     android:orientation="vertical"
 
     tools:context=".MainActivity">
-    <ListView
+    <CheckedTextView
         android:id="@+id/list_favorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
@@ -20,4 +20,5 @@
         android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
 </LinearLayout>

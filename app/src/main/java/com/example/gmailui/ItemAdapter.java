@@ -61,6 +61,13 @@ public class ItemAdapter extends BaseAdapter implements Filterable {
         else viewHolder = (ViewHolder) view.getTag();
 
         ItemModel item = items.get(i);
+        viewHolder.favorite.setOnLongClickListener(new View.OnLongClickListener() {
+
+            public boolean onLongClick(View v) {
+                // return false to let list's context menu show
+                return false;
+            }
+        });
 
         viewHolder.sender.getBackground().setColorFilter(Color.parseColor(item.getMyHexColor()),PorterDuff.Mode.SRC_ATOP);
         viewHolder.name.setText(item.getName());

@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
          listView = findViewById(R.id.list_view);
         listView.setAdapter(adapter);
 
+
+
         registerForContextMenu(listView);
         listView.setLongClickable(true);
         //create actionbar
@@ -64,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
 //        actionBar.setDisplayShowCustomEnabled(true);
         // create contextmenu
 
-//        registerForContextMenu(listView3);
-//        listView3.setLongClickable(true);
+//        registerForContextMenu(listView);
+//        listView.setLongClickable(true);
 
     }
 
@@ -126,16 +128,6 @@ public class MainActivity extends AppCompatActivity {
         menu.add(0,101, 0,"Details");
         menu.add(0,102,0,"Delete");
     }
-
-    @Override
-    public boolean onContextItemSelected(MenuItem item){
-        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
-
-        if(item.getItemId() == 101){
-            go2Details(items.get(info.position));
-        }
-        return super.onContextItemSelected(item);
-    }
     private void go2Details(ItemModel item){
         Intent details = new Intent(MainActivity.this,Details.class);
         //create Bundle
@@ -152,6 +144,19 @@ public class MainActivity extends AppCompatActivity {
 
         startActivityForResult(details,10);
     }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item){
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+
+        if(item.getItemId() == 101){
+            Log.v("tag/","intent");
+            go2Details(items.get(info.position));
+
+        }
+        return super.onContextItemSelected(item);
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
